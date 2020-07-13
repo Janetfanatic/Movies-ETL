@@ -259,24 +259,26 @@ def extract_transform_load(wiki_file, kaggle_file, ratings_file):
     except Exception as e:
         print("Unexpected error" + e)
 
-import time
+    import time
 
-rows_imported = 0
-    # get the start_time from time.time()
-start_time = time.time()
-    
-for data in pd.read_csv(f'{file_dir}/ratings.csv', chunksize=1000000):
-    print(f'importing rows {rows_imported} to {rows_imported + len(data)}...', end='')
-    db_string = f"postgres://postgres:{db_password}@127.0.0.1:5432/movie_data"
-    engine = create_engine(db_string)
-    data.to_sql(name='ratings', con=engine, if_exists='append')
-    rows_imported += len(data)
+    rows_imported = 0
+        # get the start_time from time.time()
+    start_time = time.time()
 
-    # add elapsed time to final print out
-    try:
-        print(f'Done. {time.time() - start_time} total seconds elapsed')
-    except Exception as e:
-        print("Possible memory full" + e)
+    file_dir = 'C:/Users/Janetfanatic/Desktop/Data-Analytics-Boot-Camp/Movies-ETL'
+        
+    for data in pd.read_csv(f'{file_dir}/ratings.csv', chunksize=1000000):
+        print(f'importing rows {rows_imported} to {rows_imported + len(data)}...', end='')
+        db_string = f"postgres://postgres:{db_password}@127.0.0.1:5432/movie_data"
+        engine = create_engine(db_string)
+        data.to_sql(name='ratings', con=engine, if_exists='append')
+        rows_imported += len(data)
+
+        # add elapsed time to final print out
+        try:
+            print(f'Done. {time.time() - start_time} total seconds elapsed')
+        except Exception as e:
+            print("Possible memory full" + e)
 
     file_dir = 'C:/Users/Janetfanatic/Desktop/Data-Analytics-Boot-Camp/Movies-ETL'
 
