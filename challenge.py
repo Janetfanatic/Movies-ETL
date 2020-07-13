@@ -259,7 +259,15 @@ def extract_transform_load(wiki_file, kaggle_file, ratings_file):
     except Exception as e:
         print("Unexpected error" + e)
 
-    import time
+
+    file_dir = 'C:/Users/Janetfanatic/Desktop/Data-Analytics-Boot-Camp/Movies-ETL'
+
+    wiki_file = f'{file_dir}/wikipedia.movies.json'
+    kaggle_file = f'{file_dir}/movies_metadata.csv'
+    ratings_file = f'{file_dir}/ratings.csv'
+    extract_transform_load(wiki_file, kaggle_file, ratings_file)
+
+import time
 
     rows_imported = 0
         # get the start_time from time.time()
@@ -279,15 +287,6 @@ def extract_transform_load(wiki_file, kaggle_file, ratings_file):
             print(f'Done. {time.time() - start_time} total seconds elapsed')
         except Exception as e:
             print("Possible memory full" + e)
-
-    file_dir = 'C:/Users/Janetfanatic/Desktop/Data-Analytics-Boot-Camp/Movies-ETL'
-
-    wiki_file = f'{file_dir}/wikipedia.movies.json'
-    kaggle_file = f'{file_dir}/movies_metadata.csv'
-    ratings_file = f'{file_dir}/ratings.csv'
-    extract_transform_load(wiki_file, kaggle_file, ratings_file)
-
-
     
 
     
